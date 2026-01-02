@@ -29,7 +29,7 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
         <section className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-20">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-5xl font-bold mb-4">Pizza Not Found</h1>
-            <p className="text-xl text-primary-100">The pizza you're looking for doesn't exist.</p>
+            <p className="text-xl text-primary-100">The pizza you{"'"}re looking for doesn{"'"}t exist.</p>
           </div>
         </section>
         <section className="py-20 bg-neutral-50">
@@ -202,7 +202,7 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
                           <span className="font-semibold">{currentOrderItem.quantity}</span> in your cart
                           {currentOrderItem.quantity >= 3 && (
                             <span className="ml-2 text-success-600 font-semibold">
-                              (10% discount applied!)
+                              (10{"'"}% discount applied!)
                             </span>
                           )}
                         </p>

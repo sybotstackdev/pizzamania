@@ -40,8 +40,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg md:text-xl text-neutral-100 mb-8 leading-relaxed max-w-3xl mx-auto"
         >
-          Be a chef in your kitchen with this simple and easy pizza recipe. More than a meal, it's an experience. 
-          So, put on your apron, roll up your sleeves, and let's get cooking!
+          Be a chef in your kitchen with this simple and easy pizza recipe. More than a meal, it{"'"}s an experience. 
+          So, put on your apron, roll up your sleeves, and let{"'"}s get cooking!
         </motion.p>
 
         <motion.div

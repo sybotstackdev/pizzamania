@@ -110,7 +110,7 @@ export default function OrderConfirmedPage() {
                     Order Confirmed!
                   </h1>
                   <p className="text-neutral-600 text-lg">
-                    Thank you for your order. We've received it and will start preparing right away.
+                    Thank you for your order. We{"'"}ve received it and will start preparing right away.
                   </p>
                 </div>
 
@@ -169,7 +169,7 @@ export default function OrderConfirmedPage() {
 
                 {/* Info Box */}
                 <div className="bg-primary-50 border border-primary-200 rounded-xl p-6 mb-8">
-                  <h3 className="font-bold text-primary-900 mb-2">What's Next?</h3>
+                  <h3 className="font-bold text-primary-900 mb-2">What{"'"}s Next?</h3>
                   <ul className="space-y-2 text-primary-800 text-sm">
                     <li className="flex items-start gap-2">
                       <span className="text-primary-600 mt-1">•</span>
@@ -177,7 +177,7 @@ export default function OrderConfirmedPage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary-600 mt-1">•</span>
-                      <span>You'll receive updates on your order status</span>
+                      <span>You{"'"}ll receive updates on your order status</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary-600 mt-1">•</span>
