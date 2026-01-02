@@ -1,0 +1,75 @@
+[
+  {
+    "id": "1",
+    "name": "Margherita",
+    "price": 5,
+    "ingredients": ["tomato", "mozzarella", "basil"],
+    "category": "vegetarian",
+    "description": "Classic Italian pizza with fresh tomatoes, mozzarella, and basil",
+    "imageUrl": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "2",
+    "name": "Hawaiana",
+    "price": 6,
+    "ingredients": ["tomato", "pineapple", "cheese", "ham"],
+    "category": "non-vegetarian",
+    "description": "Sweet and savory combination of pineapple and ham",
+    "imageUrl": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "3",
+    "name": "Pepperoni",
+    "price": 7,
+    "ingredients": ["tomato", "mozzarella", "pepperoni"],
+    "category": "non-vegetarian",
+    "description": "Classic American favorite with spicy pepperoni",
+    "imageUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "4",
+    "name": "Quattro Formaggi",
+    "price": 8,
+    "ingredients": ["mozzarella", "gorgonzola", "parmesan", "ricotta"],
+    "category": "vegetarian",
+    "description": "Four cheese blend for cheese lovers",
+    "imageUrl": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "5",
+    "name": "Vegetariana",
+    "price": 6.5,
+    "ingredients": ["tomato", "mozzarella", "bell peppers", "mushrooms", "olives"],
+    "category": "vegetarian",
+    "description": "Fresh vegetables on a delicious pizza base",
+    "imageUrl": "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "6",
+    "name": "BBQ Chicken",
+    "price": 7.5,
+    "ingredients": ["bbq sauce", "chicken", "red onions", "mozzarella"],
+    "category": "non-vegetarian",
+    "description": "Tender chicken with tangy BBQ sauce",
+    "imageUrl": "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "7",
+    "name": "Marinara",
+    "price": 4.5,
+    "ingredients": ["tomato", "garlic", "oregano", "olive oil"],
+    "category": "vegetarian",
+    "description": "Simple and traditional Neapolitan style",
+    "imageUrl": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&h=600&fit=crop"
+  },
+  {
+    "id": "8",
+    "name": "Meat Lovers",
+    "price": 9,
+    "ingredients": ["tomato", "mozzarella", "pepperoni", "sausage", "bacon", "ham"],
+    "category": "non-vegetarian",
+    "description": "All your favorite meats in one pizza",
+    "imageUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=600&fit=crop"
+  }
+]
+
