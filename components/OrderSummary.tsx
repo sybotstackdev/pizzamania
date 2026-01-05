@@ -26,8 +26,8 @@ export default function OrderSummary() {
     dispatch({ type: 'UPDATE_ORDER_QUANTITY', payload: { pizzaId, quantity } })
   }
 
-  const handleConfirmOrder = () => {
-    if (state.currentOrder.length === 0) return
+  const handleConfirmOrder = async () => {
+    if (state.currentOrder.length === 0 || isConfirming) return
 
     setIsConfirming(true)
     const orderId = `ORD-${Date.now().toString().slice(-6)}`
@@ -35,22 +35,36 @@ export default function OrderSummary() {
     // Estimate time: 15 minutes base + 5 minutes per pizza
     const estimatedTime = 15 + (itemCount * 5)
     
-    const order = {
+    // Store order data before clearing cart
+    const orderData = {
       id: orderId,
-      items: state.currentOrder,
+      items: [...state.currentOrder], // Copy array to preserve data
       subtotal,
       totalDiscount,
       total,
       timestamp: new Date().toISOString(),
     }
 
-    dispatch({ type: 'CONFIRM_ORDER', payload: order })
+    // Show loading state for a minimum duration for better UX (simulating order processing)
+    const minLoadingTime = 1500
     
-    // Redirect to order confirmation page
-    setTimeout(() => {
-      setIsConfirming(false)
+    try {
+      // Wait for minimum loading time, then proceed with order confirmation and navigation
+      await new Promise(resolve => setTimeout(resolve, minLoadingTime))
+      
+      // Clear cart and confirm order right before navigation
+      // Loading state remains true until navigation completes
+      dispatch({ type: 'CONFIRM_ORDER', payload: orderData })
+      
+      // Navigate - loading overlay will persist until the new page loads
       router.push(`/order-confirmed?id=${orderId}&time=${estimatedTime}&items=${itemCount}&total=${total}`)
-    }, 500)
+      
+      // Keep loading state active - it will naturally reset when component unmounts during navigation
+    } catch (error) {
+      // If there's an error, reset loading state
+      console.error('Error confirming order:', error)
+      setIsConfirming(false)
+    }
   }
 
   if (state.currentOrder.length === 0) {
@@ -76,21 +90,66 @@ export default function OrderSummary() {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <>
+      {/* Full-screen loading overlay that persists until navigation */}
+      <AnimatePresence>
+        {isConfirming && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-white/95 backdrop-blur-sm z-[9999] flex items-center justify-center"
+          >
+            <div className="text-center">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                className="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-6"
+              />
+              <p className="text-xl font-bold text-neutral-900 mb-2">Confirming your order...</p>
+              <p className="text-base text-neutral-600">Please wait while we process your order</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Items List */}
       <div className="lg:col-span-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden"
+          className="bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden relative"
         >
+          {/* Loading Overlay */}
+          <AnimatePresence>
+            {isConfirming && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-white/90 backdrop-blur-sm z-50 flex items-center justify-center rounded-2xl"
+              >
+                <div className="text-center">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                    className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-4"
+                  />
+                  <p className="text-lg font-semibold text-neutral-900 mb-1">Confirming your order...</p>
+                  <p className="text-sm text-neutral-600">Please wait while we process your order</p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-neutral-200 bg-neutral-50">
             <h2 className="text-xl font-bold text-neutral-900 flex items-center gap-3">
               <ShoppingCart className="w-6 h-6 text-primary-600" />
               Order Summary
             </h2>
-            {state.currentOrder.length > 0 && (
+            {state.currentOrder.length > 0 && !isConfirming && (
               <button
                 onClick={() => dispatch({ type: 'CLEAR_CURRENT_ORDER' })}
                 className="text-sm text-error-600 hover:text-error-700 font-medium flex items-center gap-1 transition-colors"
@@ -102,7 +161,7 @@ export default function OrderSummary() {
           </div>
 
           {/* Items */}
-          <div className="divide-y divide-neutral-200">
+          <div className={`divide-y divide-neutral-200 ${isConfirming ? 'opacity-60' : ''}`}>
             <AnimatePresence>
               {state.currentOrder.map((item) => (
                 <motion.div
@@ -152,7 +211,8 @@ export default function OrderSummary() {
                         </div>
                         <button
                           onClick={() => handleRemoveItem(item.pizza.id)}
-                          className="text-error-500 hover:text-error-600 p-2 hover:bg-error-50 rounded-lg transition-colors flex-shrink-0"
+                          disabled={isConfirming}
+                          className="text-error-500 hover:text-error-600 p-2 hover:bg-error-50 rounded-lg transition-colors flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
                           aria-label="Remove item"
                         >
                           <X className="w-5 h-5" />
@@ -165,7 +225,8 @@ export default function OrderSummary() {
                         <div className="flex items-center gap-3 bg-neutral-100 rounded-lg p-1">
                           <button
                             onClick={() => handleUpdateQuantity(item.pizza.id, item.quantity - 1)}
-                            className="w-8 h-8 flex items-center justify-center hover:bg-white rounded transition-colors text-neutral-700 hover:text-primary-600"
+                            disabled={isConfirming}
+                            className="w-8 h-8 flex items-center justify-center hover:bg-white rounded transition-colors text-neutral-700 hover:text-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
                             aria-label="Decrease quantity"
                           >
                             <Minus className="w-4 h-4" />
@@ -175,7 +236,8 @@ export default function OrderSummary() {
                           </span>
                           <button
                             onClick={() => handleUpdateQuantity(item.pizza.id, item.quantity + 1)}
-                            className="w-8 h-8 flex items-center justify-center hover:bg-white rounded transition-colors text-neutral-700 hover:text-primary-600"
+                            disabled={isConfirming}
+                            className="w-8 h-8 flex items-center justify-center hover:bg-white rounded transition-colors text-neutral-700 hover:text-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
                             aria-label="Increase quantity"
                           >
                             <Plus className="w-4 h-4" />
@@ -248,20 +310,24 @@ export default function OrderSummary() {
 
           {/* Confirm Button */}
           <motion.button
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={!isConfirming ? { scale: 1.02, y: -2 } : {}}
+            whileTap={!isConfirming ? { scale: 0.98 } : {}}
             onClick={handleConfirmOrder}
             disabled={state.currentOrder.length === 0 || isConfirming}
-            className="w-full bg-yellow-400 hover:bg-yellow-500 text-neutral-900 py-4 rounded-xl font-bold uppercase text-sm disabled:bg-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+            className={`w-full py-4 rounded-xl font-bold uppercase text-sm transition-all shadow-lg ${
+              isConfirming
+                ? 'bg-yellow-500 text-neutral-900 cursor-wait'
+                : 'bg-yellow-400 hover:bg-yellow-500 text-neutral-900 hover:shadow-xl'
+            } disabled:bg-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed`}
           >
             {isConfirming ? (
-              <span className="flex items-center justify-center gap-2">
+              <span className="flex items-center justify-center gap-3">
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                  className="w-4 h-4 border-2 border-neutral-900 border-t-transparent rounded-full"
+                  transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+                  className="w-5 h-5 border-[3px] border-neutral-900 border-t-transparent rounded-full"
                 />
-                Confirming...
+                <span>Confirming Order...</span>
               </span>
             ) : (
               'Confirm Order'
@@ -275,5 +341,6 @@ export default function OrderSummary() {
         </motion.div>
       </div>
     </div>
+    </>
   )
 }

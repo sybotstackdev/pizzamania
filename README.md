@@ -36,7 +36,28 @@ Once you've filled your cart, review everything in the order summary. You'll see
 - Applied discounts (if any)
 - Your final total
 
-When you're ready, hit "Confirm Order" and you'll get an order ID plus an estimated delivery time. It's that simple!
+When you're ready, hit "Confirm Order" and experience our smooth order confirmation process:
+- **Professional Loading State**: A beautiful full-screen loading overlay appears with a spinner
+- **Visual Feedback**: Your cart items remain visible while your order is being processed
+- **Seamless Transition**: Once confirmed, you'll be smoothly redirected to the order confirmation page
+- **Order Details**: Get your unique order ID, estimated delivery time, and complete order summary
+- **Celebration**: Enjoy confetti animations and a delightful confirmation experience!
+
+It's that simple, but with a touch of class!
+
+## ✨ Key Features
+
+- **Modern UI/UX** - Beautiful, responsive design that works seamlessly on all devices
+- **Real-time Updates** - See your cart and prices update instantly as you shop
+- **Smart Discounts** - Automatic 10% discount when ordering 3+ of the same pizza
+- **Custom Pizzas** - Create and add your own pizza creations with image uploads
+- **Professional Loading States** - Smooth loading overlays during order confirmation that persist until navigation
+- **Order Tracking** - Get unique order IDs and estimated delivery times
+- **Form Validation** - Smart, real-time validation that guides you through the process
+- **Celebration Animations** - Delightful confetti and animations on order confirmation
+- **Shopping Cart Management** - Easy quantity adjustments, item removal, and cart clearing
+- **Search & Filter** - Quickly find pizzas by name or filter by dietary preferences
+- **Image Upload** - Add custom images when creating your own pizzas
 
 ## Getting Started
 
@@ -111,8 +132,10 @@ Our test suite is pretty comprehensive. Here's what we cover:
 - Items show up properly when added
 - Quantity adjustments work as expected
 - Price calculations are accurate (including discounts!)
-- Order confirmation flow works smoothly
+- Order confirmation flow works smoothly with loading states
+- Professional loading overlay during order confirmation
 - Removing items and clearing cart function properly
+- Loading persists until page navigation completes
 
 **PizzaCard & PizzaDetails**
 - Pizza information displays correctly
@@ -157,12 +180,14 @@ pizavibe/
 
 We've used some great tools to build this:
 
-- **Next.js 14** - The React framework that makes everything fast and smooth
-- **React 18** - For building beautiful, interactive UIs
-- **TypeScript** - Because type safety saves us from bugs
-- **Tailwind CSS** - For styling without the headache
-- **Framer Motion** - For those smooth, delightful animations
-- **Jest & React Testing Library** - For making sure everything works
+- **Next.js 14** - The React framework that makes everything fast and smooth with App Router
+- **React 18** - For building beautiful, interactive UIs with hooks and modern patterns
+- **TypeScript** - Because type safety saves us from bugs and makes development easier
+- **Tailwind CSS** - For styling without the headache - responsive and modern designs
+- **Framer Motion** - For those smooth, delightful animations that make the app feel alive
+- **Lucide React** - Beautiful, consistent icons throughout the application
+- **Jest & React Testing Library** - For making sure everything works perfectly
+- **Context API** - For efficient state management across components
 
 ## How It All Works
 
@@ -187,7 +212,10 @@ Here's the typical flow:
 3. **Add to Cart** - Choose your quantity and add it to your cart
 4. **Review** - Head to the cart page to see everything you've selected
 5. **Adjust** - Change quantities, remove items, or add more pizzas
-6. **Checkout** - Confirm your order and get your order ID
+6. **Checkout** - Confirm your order with a smooth loading experience
+7. **Confirmation** - View your order details with a beautiful celebration page
+
+The whole process is designed to be intuitive and fast. No unnecessary steps, no confusion - just a delightful pizza ordering experience from start to finish!
 
 The whole process is designed to be intuitive and fast. No unnecessary steps, no confusion.
 
