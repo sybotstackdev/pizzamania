@@ -250,7 +250,7 @@ export default function OrderConfirmedPage() {
                     transition={{ delay: 0.7 }}
                     className="text-lg md:text-xl text-neutral-800 max-w-2xl mx-auto leading-relaxed"
                   >
-                    Thank you for your order. We've received it and will start preparing right away.
+                    Thank you for your order. We{"'"}ve received it and will start preparing right away.
                   </motion.p>
                 </motion.div>
               </div>
@@ -355,7 +355,7 @@ export default function OrderConfirmedPage() {
                     >
                       <Sparkles className="w-6 h-6 text-primary-600" />
                     </motion.div>
-                    What's Next?
+                    What{"'"}s Next?
                   </h3>
                   <ul className="space-y-3 text-neutral-800">
                     <motion.li
@@ -374,7 +374,7 @@ export default function OrderConfirmedPage() {
                       className="flex items-start gap-3"
                     >
                       <span className="text-primary-600 mt-0.5 font-bold text-lg">✓</span>
-                      <span className="text-base">You'll receive updates on your order status</span>
+                      <span className="text-base">You{"'"}ll receive updates on your order status</span>
                     </motion.li>
                     <motion.li
                       initial={{ opacity: 0, x: -10 }}
