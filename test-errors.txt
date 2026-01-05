@@ -1,0 +1,741 @@
+﻿
+> pizavibe@1.0.0 test
+> jest components/__tests__/OrderSummary.test.tsx --no-coverage
+
+  console.error
+    Warning: An update to OrderSummary inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+        at OrderSummary (C:\SYBOTSTACK\pizavibe\components\OrderSummary.tsx:14:51)
+
+      30 |     if (state.currentOrder.length === 0) return
+      31 |
+    > 32 |     setIsConfirming(true)
+         |     ^
+      33 |     const orderId = `ORD-${Date.now().toString().slice(-6)}`
+      34 |     const itemCount = state.currentOrder.reduce((sum, item) => sum + item.quantity, 0)
+      35 |     // Estimate time: 15 minutes base + 5 minutes per pizza
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27628:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25547:5)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom.development.js:16708:7)
+      at setIsConfirming (components/OrderSummary.tsx:32:5)
+      at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+      at HTMLUnknownElement.callTheUserObjectsOperation (node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+      at HTMLUnknownElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+      at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+      at HTMLUnknownElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+      at Object.invokeGuardedCallbackDev (node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+      at invokeGuardedCallback (node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+      at invokeGuardedCallbackAndCatchFirstError (node_modules/react-dom/cjs/react-dom.development.js:4291:25)
+      at executeDispatch (node_modules/react-dom/cjs/react-dom.development.js:9041:3)
+      at processDispatchQueueItemsInOrder (node_modules/react-dom/cjs/react-dom.development.js:9073:7)
+      at processDispatchQueue (node_modules/react-dom/cjs/react-dom.development.js:9086:5)
+      at dispatchEventsForPlugins (node_modules/react-dom/cjs/react-dom.development.js:9097:3)
+      at node_modules/react-dom/cjs/react-dom.development.js:9288:12
+      at batchedUpdates$1 (node_modules/react-dom/cjs/react-dom.development.js:26179:12)
+      at batchedUpdates (node_modules/react-dom/cjs/react-dom.development.js:3991:12)
+      at dispatchEventForPluginEventSystem (node_modules/react-dom/cjs/react-dom.development.js:9287:3)
+      at dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay (node_modules/react-dom/cjs/react-dom.development.js:6465:5)
+      at dispatchEvent (node_modules/react-dom/cjs/react-dom.development.js:6457:5)
+      at dispatchDiscreteEvent (node_modules/react-dom/cjs/react-dom.development.js:6430:5)
+      at HTMLDivElement.callTheUserObjectsOperation (node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+      at HTMLButtonElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+      at HTMLButtonElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+      at HTMLButtonElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+      at node_modules/@testing-library/user-event/dist/cjs/event/dispatchEvent.js:45:43
+      at Object.eventWrapper (node_modules/@testing-library/dom/dist/config.js:25:23)
+      at Object.wrapEvent (node_modules/@testing-library/user-event/dist/cjs/event/wrapEvent.js:6:28)
+      at Object.dispatchEvent (node_modules/@testing-library/user-event/dist/cjs/event/dispatchEvent.js:45:22)
+      at Object.dispatchUIEvent (node_modules/@testing-library/user-event/dist/cjs/event/dispatchEvent.js:22:26)
+      at Mouse.up (node_modules/@testing-library/user-event/dist/cjs/system/pointer/mouse.js:100:30)
+      at PointerHost.release (node_modules/@testing-library/user-event/dist/cjs/system/pointer/index.js:87:24)
+      at pointerAction (node_modules/@testing-library/user-event/dist/cjs/pointer/index.js:54:47)
+      at Object.pointer (node_modules/@testing-library/user-event/dist/cjs/pointer/index.js:27:9)
+      at Object.<anonymous> (components/__tests__/OrderSummary.test.tsx:440:7)
+
+  console.error
+    Warning: An update to OrderSummary inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+        at OrderSummary (C:\SYBOTSTACK\pizavibe\components\OrderSummary.tsx:14:51)
+
+      30 |     if (state.currentOrder.length === 0) return
+      31 |
+    > 32 |     setIsConfirming(true)
+         |     ^
+      33 |     const orderId = `ORD-${Date.now().toString().slice(-6)}`
+      34 |     const itemCount = state.currentOrder.reduce((sum, item) => sum + item.quantity, 0)
+      35 |     // Estimate time: 15 minutes base + 5 minutes per pizza
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27628:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25547:5)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom.development.js:16708:7)
+      at setIsConfirming (components/OrderSummary.tsx:32:5)
+      at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+      at HTMLUnknownElement.callTheUserObjectsOperation (node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+      at HTMLUnknownElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+      at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+      at HTMLUnknownElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+      at Object.invokeGuardedCallbackDev (node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+      at invokeGuardedCallback (node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+      at invokeGuardedCallbackAndCatchFirstError (node_modules/react-dom/cjs/react-dom.development.js:4291:25)
+      at executeDispatch (node_modules/react-dom/cjs/react-dom.development.js:9041:3)
+      at processDispatchQueueItemsInOrder (node_modules/react-dom/cjs/react-dom.development.js:9073:7)
+      at processDispatchQueue (node_modules/react-dom/cjs/react-dom.development.js:9086:5)
+      at dispatchEventsForPlugins (node_modules/react-dom/cjs/react-dom.development.js:9097:3)
+      at node_modules/react-dom/cjs/react-dom.development.js:9288:12
+      at batchedUpdates$1 (node_modules/react-dom/cjs/react-dom.development.js:26179:12)
+      at batchedUpdates (node_modules/react-dom/cjs/react-dom.development.js:3991:12)
+      at dispatchEventForPluginEventSystem (node_modules/react-dom/cjs/react-dom.development.js:9287:3)
+      at dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay (node_modules/react-dom/cjs/react-dom.development.js:6465:5)
+      at dispatchEvent (node_modules/react-dom/cjs/react-dom.development.js:6457:5)
+      at dispatchDiscreteEvent (node_modules/react-dom/cjs/react-dom.development.js:6430:5)
+      at HTMLDivElement.callTheUserObjectsOperation (node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+      at HTMLButtonElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+      at HTMLButtonElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+      at HTMLButtonElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+      at node_modules/@testing-library/user-event/dist/cjs/event/dispatchEvent.js:45:43
+      at Object.eventWrapper (node_modules/@testing-library/dom/dist/config.js:25:23)
+      at Object.wrapEvent (node_modules/@testing-library/user-event/dist/cjs/event/wrapEvent.js:6:28)
+      at Object.dispatchEvent (node_modules/@testing-library/user-event/dist/cjs/event/dispatchEvent.js:45:22)
+      at Object.dispatchUIEvent (node_modules/@testing-library/user-event/dist/cjs/event/dispatchEvent.js:22:26)
+      at Mouse.up (node_modules/@testing-library/user-event/dist/cjs/system/pointer/mouse.js:100:30)
+      at PointerHost.release (node_modules/@testing-library/user-event/dist/cjs/system/pointer/index.js:87:24)
+      at pointerAction (node_modules/@testing-library/user-event/dist/cjs/pointer/index.js:54:47)
+      at Object.pointer (node_modules/@testing-library/user-event/dist/cjs/pointer/index.js:27:9)
+      at Object.<anonymous> (components/__tests__/OrderSummary.test.tsx:472:7)
+
+npm : FAIL components/__tests__/OrderSummary.test.tsx
+At C:\Users\yash\AppData\Local\Temp\ps-script-49d595d4-abb2-4073-a4fd-9d5b6e6bc633.ps1:77 char:1
++ npm test -- components/__tests__/OrderSummary.test.tsx --no-coverage  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (FAIL components...ummary.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  OrderSummary
+    Empty Cart State
+      ΓêÜ displays empty cart message when no items (31 ms)
+      ΓêÜ shows browse menu link when cart is empty (29 ms)
+      ΓêÜ does not show confirm order button when cart is empty (3 ms)
+    Cart with Items
+      ΓêÜ displays all items in the cart (22 ms)
+      ΓêÜ displays correct quantities for each item (12 ms)
+      ΓêÜ displays correct prices for each item (15 ms)
+      ΓêÜ displays order summary header (13 ms)
+      ΓêÜ displays order total section (13 ms)
+      ├ù calculates and displays correct subtotal (15 ms)
+      ΓêÜ displays confirm order button (32 ms)
+    Quantity Management
+      ΓêÜ allows increasing item quantity (49 ms)
+      ΓêÜ allows decreasing item quantity (47 ms)
+      ├ù removes item when quantity reaches zero (49 ms)
+    Remove Item
+      ΓêÜ allows removing item from cart (46 ms)
+    Clear All Items
+      ΓêÜ displays clear all button when cart has items (19 ms)
+      ΓêÜ clears all items when clear all button is clicked (56 ms)
+    Discount Calculation
+      ΓêÜ displays discount when quantity is 3 or more (10 ms)
+      ΓêÜ does not display discount when quantity is less than 3 (7 ms)
+    Order Confirmation
+      ├ù confirms order when confirm button is clicked (71 ms)
+      ΓêÜ shows loading state during order confirmation (32 ms)
+      ΓêÜ does not confirm order when cart is empty (4 ms)
+    Price Calculations
+      ΓêÜ calculates total correctly with multiple items (6 ms)
+
+  ΓùÅ OrderSummary ΓÇ║ Cart with Items ΓÇ║ calculates and displays correct subtotal
+
+    TestingLibraryElementError: Found multiple elements with the text: $32.00
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    [36m<span[39m
+      [33mclass[39m=[32m"font-medium"[39m
+    [36m>[39m
+      [0m$[0m
+      [0m32.00[0m
+    [36m</span>[39m
+
+    Ignored nodes: comments, script, style
+    [36m<span[39m
+      [33mclass[39m=[32m"text-2xl font-bold text-primary-600"[39m
+    [36m>[39m
+      [0m$[0m
+      [0m32.00[0m
+    [36m</span>[39m
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or 
+`findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"grid grid-cols-1 lg:grid-cols-3 gap-8"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lg:col-span-2"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex items-center justify-between p-6 border-b border-neutral-200 
+bg-neutral-50"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-xl font-bold text-neutral-900 flex items-center gap-3"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-shopping-cart w-6 h-6 text-primary-600"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<circle[39m
+                      [33mcx[39m=[32m"8"[39m
+                      [33mcy[39m=[32m"21"[39m
+                      [33mr[39m=[32m"1"[39m
+                    [36m/>[39m
+                    [36m<circle[39m
+                      [33mcx[39m=[32m"19"[39m
+                      [33mcy[39m=[32m"21"[39m
+                      [33mr[39m=[32m"1"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 
+1.95-1.57l1.65-7.43H5.12"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                  [0mOrder Summary[0m
+                [36m</h2>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"text-sm text-error-600 hover:text-error-700 font-medium flex items-center 
+gap-1 transition-colors"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-trash2 w-4 h-4"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M3 6h18"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+                    [36m/>[39m
+                    [36m<line[39m
+                      [33mx1[39m=[32m"10"[39m
+                      [33mx2[39m=[32m"10"[39m
+                      [33my1[39m=[32m"11"[39m
+                      [33my2[39m=[32m"17"[39m
+                    [36m/>[39m
+                    [36m<line[39m
+                      [33mx1[39m=[32m"14"[39m
+                      [33mx2[39m=[32m"14"[39m
+                      [33my1[39m=[32m"11"[39m
+                      [33my2[39m=[32m"17"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                  [0mClear All[0m
+                [36m</button>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"divide-y divide-neutral-200"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"p-6 hover:bg-neutral-50 transition-colors"[39m
+                  [33mexit[39m=[32m"[object Object]"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"flex gap-4"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 
+bg-neutral-100"[39m
+                    [36m>[39m
+                      [36m<img[39m
+                        [33malt[39m=[32m"Margherita"[39m
+                        [33mclass[39m=[32m"object-cover"[39m
+                        [33mdata-nimg[39m=[32m"fill"[39m
+                        [33mdecoding[39m=[32m"async"[39m
+                        [33mloading[39m=[32m"lazy"[39m
+                        [33msizes[39m=[32m"80px"[39m
+                        [33msrc[39m=[32m"/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=3840&q=75"[39m
+                        [33msrcset[39m=[32m"/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=16&q=75 16w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=32&q=75 32w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=48&q=75 48w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=64&q=75 64w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=96&q=75 96w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=128&q=75 128w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=256&q=75 256w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=384&q=75 384w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=640&q=75 640w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=750&q=75 750w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=828&q=75 828w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=1080&q=75 1080w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=1200&q=75 1200w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=1920&q=75 1920w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=2048&q=75 2048w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=3840&q=75 3840w"[39m
+                        [33mstyle[39m=[32m"position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; 
+right: 0px; bottom: 0px; color: transparent;"[39m
+                      [36m/>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"absolute top-1 right-1 z-10"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"w-3 h-3 rounded-full border-2 border-white shadow-md bg-green-500"[39m
+                          [33mtitle[39m=[32m"Vegetarian"[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"flex-1 min-w-0"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"flex i...
+
+      146 |
+      147 |       // Subtotal should be 20 + 12 = 32
+    > 148 |       expect(screen.getByText('$32.00')).toBeInTheDocument()
+          |                     ^
+      149 |     })
+      150 |
+      151 |     it('displays confirm order button', () => {
+
+      at Object.getElementError 
+(node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError 
+(node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError 
+(node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByText (components/__tests__/OrderSummary.test.tsx:148:21)
+
+  ΓùÅ OrderSummary ΓÇ║ Quantity Management ΓÇ║ removes item when quantity reaches zero
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: {"payload": {"pizzaId": "1", "quantity": 0}, "type": "UPDATE_ORDER_QUANTITY"}
+
+    Number of calls: 0
+
+      239 |       await user.click(decreaseButtons[0])
+      240 |
+    > 241 |       expect(mockDispatch).toHaveBeenCalledWith({
+          |                            ^
+      242 |         type: 'UPDATE_ORDER_QUANTITY',
+      243 |         payload: { pizzaId: '1', quantity: 0 },
+      244 |       })
+
+      at Object.toHaveBeenCalledWith (components/__tests__/OrderSummary.test.tsx:241:28)
+
+  ΓùÅ OrderSummary ΓÇ║ Order Confirmation ΓÇ║ confirms order when confirm button is clicked
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+    Ignored nodes: comments, script, style
+    [36m<html>[39m
+      [36m<head />[39m
+      [36m<body>[39m
+        [36m<div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid grid-cols-1 lg:grid-cols-3 gap-8"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"lg:col-span-2"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"flex items-center justify-between p-6 border-b border-neutral-200 
+bg-neutral-50"[39m
+                [36m>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"text-xl font-bold text-neutral-900 flex items-center gap-3"[39m
+                  [36m>[39m
+                    [36m<svg[39m
+                      [33mclass[39m=[32m"lucide lucide-shopping-cart w-6 h-6 text-primary-600"[39m
+                      [33mfill[39m=[32m"none"[39m
+                      [33mheight[39m=[32m"24"[39m
+                      [33mstroke[39m=[32m"currentColor"[39m
+                      [33mstroke-linecap[39m=[32m"round"[39m
+                      [33mstroke-linejoin[39m=[32m"round"[39m
+                      [33mstroke-width[39m=[32m"2"[39m
+                      [33mviewBox[39m=[32m"0 0 24 24"[39m
+                      [33mwidth[39m=[32m"24"[39m
+                      [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                    [36m>[39m
+                      [36m<circle[39m
+                        [33mcx[39m=[32m"8"[39m
+                        [33mcy[39m=[32m"21"[39m
+                        [33mr[39m=[32m"1"[39m
+                      [36m/>[39m
+                      [36m<circle[39m
+                        [33mcx[39m=[32m"19"[39m
+                        [33mcy[39m=[32m"21"[39m
+                        [33mr[39m=[32m"1"[39m
+                      [36m/>[39m
+                      [36m<path[39m
+                        [33md[39m=[32m"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 
+1.95-1.57l1.65-7.43H5.12"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                    [0mOrder Summary[0m
+                  [36m</h2>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"text-sm text-error-600 hover:text-error-700 font-medium flex items-center 
+gap-1 transition-colors"[39m
+                  [36m>[39m
+                    [36m<svg[39m
+                      [33mclass[39m=[32m"lucide lucide-trash2 w-4 h-4"[39m
+                      [33mfill[39m=[32m"none"[39m
+                      [33mheight[39m=[32m"24"[39m
+                      [33mstroke[39m=[32m"currentColor"[39m
+                      [33mstroke-linecap[39m=[32m"round"[39m
+                      [33mstroke-linejoin[39m=[32m"round"[39m
+                      [33mstroke-width[39m=[32m"2"[39m
+                      [33mviewBox[39m=[32m"0 0 24 24"[39m
+                      [33mwidth[39m=[32m"24"[39m
+                      [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                    [36m>[39m
+                      [36m<path[39m
+                        [33md[39m=[32m"M3 6h18"[39m
+                      [36m/>[39m
+                      [36m<path[39m
+                        [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+                      [36m/>[39m
+                      [36m<path[39m
+                        [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+                      [36m/>[39m
+                      [36m<line[39m
+                        [33mx1[39m=[32m"10"[39m
+                        [33mx2[39m=[32m"10"[39m
+                        [33my1[39m=[32m"11"[39m
+                        [33my2[39m=[32m"17"[39m
+                      [36m/>[39m
+                      [36m<line[39m
+                        [33mx1[39m=[32m"14"[39m
+                        [33mx2[39m=[32m"14"[39m
+                        [33my1[39m=[32m"11"[39m
+                        [33my2[39m=[32m"17"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                    [0mClear All[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"divide-y divide-neutral-200"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"p-6 hover:bg-neutral-50 transition-colors"[39m
+                    [33mexit[39m=[32m"[object Object]"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"flex gap-4"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 
+bg-neutral-100"[39m
+                      [36m>[39m
+                        [36m<img[39m
+                          [33malt[39m=[32m"Margherita"[39m
+                          [33mclass[39m=[32m"object-cover"[39m
+                          [33mdata-nimg[39m=[32m"fill"[39m
+                          [33mdecoding[39m=[32m"async"[39m
+                          [33mloading[39m=[32m"lazy"[39m
+                          [33msizes[39m=[32m"80px"[39m
+                          [33msrc[39m=[32m"/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=3840&q=75"[39m
+                          [33msrcset[39m=[32m"/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=16&q=75 
+16w, /_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=32&q=75 32w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=48&q=75 48w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=64&q=75 64w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=96&q=75 96w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=128&q=75 128w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=256&q=75 256w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=384&q=75 384w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=640&q=75 640w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=750&q=75 750w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=828&q=75 828w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=1080&q=75 1080w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=1200&q=75 1200w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=1920&q=75 1920w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=2048&q=75 2048w, 
+/_next/image?url=https%3A%2F%2Fexample.com%2Fpizza1.jpg&w=3840&q=75 3840w"[39m
+                          [33mstyle[39m=[32m"position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; 
+right: 0px; bottom: 0px; color: transparent;"[39m
+                        [36m/>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"absolute top-1 right-1 z-10"[39m
+                        [36m>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"w-3 h-3 rounded-full border-2 border-white shadow-md 
+bg-green-500"[39m
+                            [33mtitle[39m=[32m"Vegetarian"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"flex-1 min-w-0"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"flex items-start justify-between gap-4 mb-3"[39m
+                        [36m>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"flex-1"[39m
+                          [36m>[39m
+                            [36m<h3[39m
+                              [33mclass[39m=[32m"font-bold text-neutral-900 text-lg mb-1"[39m
+                            [36m>[39m
+                              [0mMargherita[0m
+                            [36m</h3>[39m
+                            [36m<p[39m
+                              [33mclass[39m=[32m"text-sm text-neutral-500"[39m
+                            [36m>[39m
+                              [0m$[0m
+                              [0m10.00[0m
+                              [0m each[0m
+                            [36m</p>[39m
+                          [36m</div>[39m
+                          [36m<button[39m
+                            [33maria-label[39m=[32m"Remove item"[39m
+                            [33mclass[39m=[32m"text-error-500 hover:text-error-600 p-2 hover:bg-error-50 rounded-lg 
+transition-colors flex-shrink-0"[39m
+                          [36m>[39m
+                            [36m<svg[39m
+                              [33mclass[39m=[32m"lucide lucide-x w-5 h-5"[39m
+                              [33mfill[39m=[32m"none"[39m
+                              [33mheight[39m=[32m"24"[39m
+                              [33mstroke[39m=[32m"currentColor"[39m
+                              [33mstroke-linecap[39m=[32m"round"[39m
+                              [33mstroke-linejoin[39m=[32m"round"[39m
+                              [33mstroke-width[39m=[32m"2"[39m
+                              [33mviewBox[39m=[32m"0 0 24 24"[39m
+                              [33mwidth[39m=[32m"24"[39m
+                              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                            [36m>[39m
+                              [36m<path[39m
+                                [33md[39m=[32m"M18 6 6 18"[39m
+                              [36m/>[39m
+                              [36m<path[39m
+                                [33md[39m=[32m"m6 6 12 12"[39m
+                              [36m/>[39m
+                            [36m</svg>[39m
+                          [36m</button>[39m
+                        [36m</div>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"flex items-center justify-between"[39m
+                        [36m>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"flex items-center gap-3 bg-neutral-100 rounded-lg p-1"[39m
+                          [36m>[39m
+                            [36m<button[39m
+                              [33maria-label[39m=[32m"Decrease quantity"[39m
+                              [33mclass[39m=[32m"w-8 h-8 flex items-center justify-center hover:bg-white rounded 
+transition-colors text-neutral-700 hover:text-primary-600"[39m
+                            [36m>[39m
+                              [36m<svg[39m
+                                [33mclass[39m=[32m"lucide lucide-minus w-4 h-4"[39m
+                                [33mfill[39m=[32m"none"[39m
+                                [33mheight[39m=[32m"24"[39m
+                                [33mstroke[39m=[32m"currentColor"[39m
+                                [33mstroke-linecap[39m=[32m"round"[39m
+                                [33mstroke-linejoin[39m=[32m"round"[39m
+                                [33mstroke-width[39m=[32m"2"[39m
+                                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                                [33mwidth[39m=[32m"24"[39m
+                                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                              [36m>[39m
+                                [36m<path[39m
+                                  [33md[39m=[32m"M5 12h14"[39m
+                                [36m/>[39m
+                              [36m</svg>[39m
+                            [36m</button>[39m
+                            [36m<span[39m
+                              [33mclass[39m=[32m"w-8 text-center font-bold text-neutral-900"[39m
+                            [36m>[39m
+                              [0m2[0m
+                            [36m</span>[39m
+                            [36m<button[39m
+                              [33maria-label[39m=[32m"Increase quantity"[39m
+                              [33mclass[39m=[32m"w-8 h-8 flex items-center justify-center hover:bg-white rounded 
+transition-colors text-neutral-700 hover:text-primary-600"[39m
+                            [36m>[39m
+                              [36m<svg[39m
+                                [33mclass[39m=[32m"lucide lucide-plus w-4 h-4"[39m
+                                [33mfill[39m=[32m"none"[39m
+                                [33mheight[39m=[32m"24"[39m
+                                [33mstroke[39m=[32m"currentColor"[39m
+                                [33mstroke-linecap[39m=[32m"round"[39m
+                                [33mstroke-linejoin[39m=[32m"round"[39m
+                                [33mstroke-width[39m=[32m"2"[39m
+                                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                                [33mwidth[39m=[32m"24"[39m
+                                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                              [36m>[39m
+                                [36m<path[39m
+                                  [33md[39m=[32m"M5 12h14"[39m
+                                [36m/>[39m
+                                [36m<path[39m
+                                  [33md[39m=[32m"M12 5v14"[39m
+                                [36m/>[39m
+                              [36m</svg>[39m
+                            [36m</button>[39m
+                          [36m</div>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"text-right"[39m
+                          [36m>[39m
+                            [36m<div[39m
+                              [33mclass[39m=[32m"flex flex-col items-end"[39m
+                            [36m>[39m
+                              [36m<span[39m
+                                [33mclass[39m=[32m"text-xl font-bold text-primary-600"[39m
+                              [36m>[39m
+                                [0m$[0m
+                                [0m20.00[0m
+                              [36m</span>[39m
+                            [36m</div>[39m
+                          [36m</div>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"lg:col-span-1"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"bg-white rounded-2xl shadow-lg border border-neutral-200 p-6 sticky top-24"[39m
+              [36m>[39m
+                [36m<h3[39m
+                  [33mclass[39m=[32m"text-lg font-bold text-neutral-900 mb-6"[39m
+                [36m>[39m
+                  [0mOrder Total[0m
+                [36m</h3>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"space-y-3 mb-6"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"flex justify-between text-neutral-600"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0mSubtotal[0m
+                    [36m</span>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"font-medium"[39m
+                    [36m>[39m
+                      [0m$[0m
+                      [0m20.00[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"border-t border-neutral-200 pt-3 mt-3"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"flex justify-between items-center"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"text-lg font-bold text-neutral-900"[39m
+                      [36m>[39m
+                        [0mTotal[0m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"text-2xl font-bold text-primary-600"[39m
+                      [36m>[39m
+                        [0m$[0m
+                        [0m20.00[0m
+                      [36m</span>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"w-full bg-yellow-400 hover:bg-yellow-500 text-neutral-900 py-4 rounded-xl 
+font-bold uppercase text-sm disabled:bg-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed 
+transition-all shadow-lg hover:shadow-xl"[39m
+                [36m>[39m
+                  [0mConfirm Order[0m
+                [36m</button>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"text-xs text-neutral-500 text-center mt-4"[39m
+                [36m>[39m
+                  [0m≡ƒöÆ Secure checkout ΓÇó Free delivery on orders over $20[0m
+                [36m</p>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</body>[39m
+    [36m</html>[39m
+
+      461 |
+      462 |       await waitFor(() => {
+    > 463 |         expect(mockPush).toHaveBeenCalled()
+          |                          ^
+      464 |       })
+      465 |     })
+      466 |
+
+      at toHaveBeenCalled (components/__tests__/OrderSummary.test.tsx:463:26)
+      at runWithExpensiveErrorDiagnosticsDisabled 
+(node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:47:12)
+      at checkCallback (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:124:77)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/wait-for.js:82:9
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 19 passed, 22 total
+Snapshots:   0 total
+Time:        1.989 s, estimated 2 s
+Ran all test suites matching /components\\__tests__\\OrderSummary.test.tsx/i.

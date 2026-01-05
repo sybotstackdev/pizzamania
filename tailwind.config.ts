@@ -22,7 +22,7 @@ const config: Config = {
           800: 'var(--color-primary-800)',
           900: 'var(--color-primary-900)',
         },
-        // Secondary accent colors
+        // Secondary accent colors - Yellow/Orange (Pizzon Style)
         secondary: {
           50: 'var(--color-secondary-50)',
           100: 'var(--color-secondary-100)',
@@ -34,6 +34,12 @@ const config: Config = {
           700: 'var(--color-secondary-700)',
           800: 'var(--color-secondary-800)',
           900: 'var(--color-secondary-900)',
+        },
+        // Yellow accent (Pizzon buttons)
+        yellow: {
+          400: 'var(--color-yellow-400)',
+          500: 'var(--color-yellow-500)',
+          600: 'var(--color-yellow-600)',
         },
         // Success colors
         success: {

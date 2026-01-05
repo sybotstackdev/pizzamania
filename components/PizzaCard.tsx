@@ -3,10 +3,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Plus, Minus } from 'lucide-react'
+import { ShoppingCart, Star } from 'lucide-react'
 import { Pizza } from '@/types'
 import { useApp } from '@/context/AppContext'
-import { useState } from 'react'
 
 interface PizzaCardProps {
   pizza: Pizza
@@ -15,18 +14,16 @@ interface PizzaCardProps {
 
 export default function PizzaCard({ pizza, index }: PizzaCardProps) {
   const { dispatch } = useApp()
-  const [quantity, setQuantity] = useState(1)
 
   const handleAddToOrder = () => {
     dispatch({
       type: 'ADD_PIZZA_TO_ORDER',
-      payload: { pizza, quantity },
+      payload: { pizza, quantity: 1 },
     })
-    setQuantity(1)
   }
 
-  const incrementQuantity = () => setQuantity((q) => q + 1)
-  const decrementQuantity = () => setQuantity((q) => Math.max(1, q - 1))
+  // Generate 5 stars (all filled for now)
+  const stars = Array.from({ length: 5 }, (_, i) => i)
 
   return (
     <motion.div
@@ -34,87 +31,66 @@ export default function PizzaCard({ pizza, index }: PizzaCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-neutral-200 group"
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-neutral-200 group"
     >
       <Link href={`/pizza/${pizza.id}`} className="block">
-        <div className="relative h-40 bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 cursor-pointer overflow-hidden image-container">
+        <div className="relative h-48 bg-white cursor-pointer overflow-hidden">
           {pizza.imageUrl ? (
             <Image
               src={pizza.imageUrl}
               alt={pizza.name}
               fill
-              className="object-cover transition-transform duration-500 ease-out"
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <motion.div
-                whileHover={{ scale: 1.15, rotate: 10 }}
-                transition={{ duration: 0.3 }}
-                className="relative z-10"
-              >
-                <span className="text-7xl">🍕</span>
-              </motion.div>
+            <div className="w-full h-full flex items-center justify-center bg-neutral-50">
+              <span className="text-7xl">🍕</span>
             </div>
           )}
-          {pizza.category === 'vegetarian' && (
-            <motion.span
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="absolute top-2 right-2 bg-success-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md z-20"
-            >
-              VEG
-            </motion.span>
-          )}
+          {/* Veg/Non-Veg Dot Indicator */}
+          <div className="absolute top-2 right-2 z-10">
+            <div
+              className={`w-4 h-4 rounded-full border-2 border-white shadow-lg ${
+                pizza.category === 'vegetarian' ? 'bg-green-500' : 'bg-red-500'
+              }`}
+              title={pizza.category === 'vegetarian' ? 'Vegetarian' : 'Non-Vegetarian'}
+            />
+          </div>
         </div>
       </Link>
 
-      <div className="p-4">
+      <div className="p-5">
         <Link href={`/pizza/${pizza.id}`}>
-          <h3 className="text-base font-bold text-neutral-900 mb-1.5 hover:text-primary-600 transition-colors cursor-pointer uppercase tracking-wide line-clamp-1">
+          <h3 className="text-lg font-bold text-neutral-900 mb-2 hover:text-primary-600 transition-colors cursor-pointer">
             {pizza.name}
           </h3>
         </Link>
 
-        <p className="text-neutral-600 text-xs mb-3 line-clamp-2 min-h-[2rem]">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-2xl font-bold text-primary-600">
+            ${pizza.price.toFixed(2)}
+          </span>
+          <div className="flex items-center gap-1">
+            {stars.map((star) => (
+              <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+        </div>
+
+        <p className="text-sm text-neutral-600 mb-4 line-clamp-2 min-h-[2.5rem]">
           {pizza.ingredients.map(ing => ing.charAt(0).toUpperCase() + ing.slice(1)).join(', ')}
         </p>
 
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xl font-bold text-primary-600">
-              ${pizza.price.toFixed(2)}
-            </span>
-
-            <div className="flex items-center gap-1 bg-neutral-100 rounded-lg border border-neutral-200">
-              <button
-                onClick={decrementQuantity}
-                className="p-1 hover:bg-neutral-200 rounded transition-colors"
-                aria-label="Decrease quantity"
-              >
-                <Minus className="w-3 h-3 text-neutral-700" />
-              </button>
-              <span className="w-6 text-center font-bold text-neutral-900 text-xs">{quantity}</span>
-              <button
-                onClick={incrementQuantity}
-                className="p-1 hover:bg-neutral-200 rounded transition-colors"
-                aria-label="Increase quantity"
-              >
-                <Plus className="w-3 h-3 text-neutral-700" />
-              </button>
-            </div>
-          </div>
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={handleAddToOrder}
-            className="w-full bg-primary-600 text-white py-2 rounded-lg font-bold uppercase text-xs hover:bg-primary-700 transition-colors flex items-center justify-center gap-1.5 shadow-md"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            Add to Cart
-          </motion.button>
-        </div>
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={handleAddToOrder}
+          className="w-full bg-yellow-400 hover:bg-yellow-500 text-neutral-900 py-3 rounded-lg font-bold uppercase text-xs transition-colors flex items-center justify-center gap-2 shadow-md"
+        >
+          <ShoppingCart className="w-4 h-4" />
+          ORDER NOW
+        </motion.button>
       </div>
     </motion.div>
   )

@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { ShoppingCart, Pizza, Plus, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react'
+import { ShoppingCart, Plus } from 'lucide-react'
 import { useApp } from '@/context/AppContext'
 import { useState } from 'react'
+import Logo from './Logo'
 
 export default function Navigation() {
   const pathname = usePathname()
@@ -15,48 +16,37 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/', label: 'HOME' },
-    { href: '/menu', label: 'MENU' },
+    { href: '/menu', label: 'ORDER' },
     { href: '/cart', label: 'CART' },
-    { href: '/add-pizza', label: 'ADD PIZZA' },
   ]
 
   return (
     <>
-
       {/* Main Navigation */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="bg-white shadow-md sticky top-0 z-50"
+        className="bg-white sticky top-0 z-50 border-b border-neutral-200 shadow-sm"
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Pizza className="w-10 h-10 text-primary-600" />
-              </motion.div>
-              <div>
-                <span className="text-3xl font-serif text-primary-600 italic">Piza</span>
-                <span className="text-xl font-bold text-neutral-900 block">Vibe</span>
-              </div>
+            <Link href="/" className="flex items-center">
+              <Logo size="md" />
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-1">
+            {/* Desktop Navigation - Centered */}
+            <div className="hidden lg:flex items-center gap-12">
               {navItems.map((item) => {
-                const isActive = pathname === item.href
+                const isActive = pathname === item.href || (item.href === '/menu' && pathname.startsWith('/menu'))
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="relative px-4 py-2 font-semibold text-sm uppercase tracking-wide transition-colors"
+                    className="relative px-4 py-2 font-semibold text-sm uppercase tracking-wider transition-colors"
                   >
-                    <span className={isActive ? 'text-primary-600' : 'text-neutral-700 hover:text-primary-600'}>
+                    <span className={isActive ? 'text-primary-600' : 'text-neutral-900 hover:text-primary-600'}>
                       {item.label}
                     </span>
                     {isActive && (
@@ -72,29 +62,44 @@ export default function Navigation() {
               })}
             </div>
 
-            {/* Cart Button */}
-            <motion.div
-              initial={false}
-              animate={{ scale: itemCount > 0 ? [1, 1.2, 1] : 1 }}
-              transition={{ duration: 0.3 }}
-              className="relative"
-            >
-              <Link
-                href="/cart"
-                className="flex items-center justify-center bg-primary-600 text-white px-3 py-2 rounded-lg font-semibold text-sm hover:bg-primary-700 transition-colors shadow-md relative"
-              >
-                <ShoppingCart className="w-5 h-5" />
-                {itemCount > 0 && (
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="absolute -top-2 -right-2 bg-secondary-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center"
-                  >
-                    {itemCount}
-                  </motion.span>
-                )}
+            {/* Action Buttons */}
+            <div className="flex items-center gap-4">
+              {/* Add Pizza Button */}
+              <Link href="/add-pizza">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="hidden md:flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-neutral-900 px-4 py-2 rounded-lg font-bold uppercase text-xs transition-colors shadow-md"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add Pizza
+                </motion.button>
               </Link>
-            </motion.div>
+
+              {/* Cart Button */}
+              <motion.div
+                initial={false}
+                animate={{ scale: itemCount > 0 ? [1, 1.2, 1] : 1 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
+              >
+                <Link
+                  href="/cart"
+                  className="flex items-center justify-center text-neutral-900 hover:text-primary-600 transition-colors relative"
+                >
+                  <ShoppingCart className="w-6 h-6" />
+                  {itemCount > 0 && (
+                    <motion.span
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+                    >
+                      {itemCount}
+                    </motion.span>
+                  )}
+                </Link>
+              </motion.div>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -132,11 +137,18 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-2 text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 font-semibold uppercase text-sm"
+                  className="block px-4 py-2 text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 font-semibold uppercase text-sm"
                 >
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/add-pizza"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-4 py-2 text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 font-semibold uppercase text-sm"
+              >
+                Add Pizza
+              </Link>
             </motion.div>
           )}
         </div>

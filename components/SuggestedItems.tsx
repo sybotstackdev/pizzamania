@@ -80,11 +80,17 @@ export default function SuggestedItems({
                         <span className="text-5xl">🍕</span>
                       </div>
                     )}
-                    {pizza.category === 'vegetarian' && (
-                      <span className="absolute top-2 right-2 bg-success-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md z-20">
-                        VEG
+                    {/* Veg/Non-Veg Dot Indicator */}
+                    <div className="absolute top-2 right-2 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-md">
+                      <div
+                        className={`w-3 h-3 rounded-full ${
+                          pizza.category === 'vegetarian' ? 'bg-green-500' : 'bg-red-500'
+                        }`}
+                      />
+                      <span className="text-xs font-bold text-neutral-900">
+                        {pizza.category === 'vegetarian' ? 'VEG' : 'NON-VEG'}
                       </span>
-                    )}
+                    </div>
                   </div>
                 </Link>
 
@@ -123,7 +129,7 @@ export default function SuggestedItems({
                         e.preventDefault()
                         handleAddToCart(pizza)
                       }}
-                      className="flex-1 bg-primary-600 text-white py-1.5 rounded-lg font-bold uppercase text-xs hover:bg-primary-700 transition-colors flex items-center justify-center gap-1 shadow-md"
+                      className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-neutral-900 py-1.5 rounded-lg font-bold uppercase text-xs transition-colors flex items-center justify-center gap-1 shadow-md"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       Add

@@ -70,7 +70,7 @@ export default function PizzaFilters() {
     state.filters.ingredient !== null
 
   return (
-    <div className="mb-8">
+    <div className="mb-8 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row gap-4 mb-4">
         {/* Search */}
         <div className="relative flex-1">

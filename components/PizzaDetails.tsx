@@ -36,7 +36,7 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
           <div className="container mx-auto px-4 text-center">
             <Link
               href="/menu"
-              className="inline-flex items-center gap-2 bg-primary-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-primary-700 transition-colors shadow-md"
+              className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-neutral-900 px-6 py-3 rounded-lg font-bold uppercase text-sm transition-colors shadow-md"
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Menu
@@ -64,7 +64,7 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
   return (
     <>
       {/* Header Section */}
-      <section className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-20">
+      <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -72,10 +72,10 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 uppercase tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-neutral-900">
               {pizza.name}
             </h1>
-            <p className="text-xl text-primary-100">
+            <p className="text-lg text-neutral-600">
               Discover the flavors and ingredients
             </p>
           </motion.div>
@@ -83,7 +83,7 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
       </section>
 
       {/* Pizza Details Content */}
-      <section className="py-20 bg-neutral-50">
+      <section className="py-16 bg-neutral-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0 }}
@@ -127,11 +127,17 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
                       </motion.div>
                     </div>
                   )}
-                  {pizza.category === 'vegetarian' && (
-                    <span className="absolute top-4 right-4 bg-success-500 text-white font-bold px-4 py-2 rounded-full shadow-lg z-10">
-                      Vegetarian
+                  {/* Veg/Non-Veg Dot Indicator */}
+                  <div className="absolute top-4 right-4 z-10 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
+                    <div
+                      className={`w-4 h-4 rounded-full ${
+                        pizza.category === 'vegetarian' ? 'bg-green-500' : 'bg-red-500'
+                      }`}
+                    />
+                    <span className="text-xs font-bold text-neutral-900">
+                      {pizza.category === 'vegetarian' ? 'VEG' : 'NON-VEG'}
                     </span>
-                  )}
+                  </div>
                 </motion.div>
 
                 {/* Details Section */}
@@ -154,17 +160,35 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
                   <div>
                     <h2 className="text-xl font-semibold text-neutral-900 mb-3">Ingredients</h2>
                     <div className="flex flex-wrap gap-2">
-                      {pizza.ingredients.map((ingredient, index) => (
-                        <motion.span
-                          key={ingredient}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.4 + index * 0.1 }}
-                          className="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium"
-                        >
-                          {ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}
-                        </motion.span>
-                      ))}
+                      {pizza.ingredients.map((ingredient, index) => {
+                        // Different color combinations for each tag
+                        const tagColors = [
+                          { bg: 'bg-red-100', text: 'text-red-700' },
+                          { bg: 'bg-yellow-100', text: 'text-yellow-700' },
+                          { bg: 'bg-green-100', text: 'text-green-700' },
+                          { bg: 'bg-blue-100', text: 'text-blue-700' },
+                          { bg: 'bg-purple-100', text: 'text-purple-700' },
+                          { bg: 'bg-pink-100', text: 'text-pink-700' },
+                          { bg: 'bg-orange-100', text: 'text-orange-700' },
+                          { bg: 'bg-indigo-100', text: 'text-indigo-700' },
+                          { bg: 'bg-teal-100', text: 'text-teal-700' },
+                          { bg: 'bg-cyan-100', text: 'text-cyan-700' },
+                        ]
+                        const colorIndex = index % tagColors.length
+                        const colors = tagColors[colorIndex]
+
+                        return (
+                          <motion.span
+                            key={ingredient}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.4 + index * 0.1 }}
+                            className={`${colors.bg} ${colors.text} px-3 py-1 rounded-full text-sm font-medium`}
+                          >
+                            {ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}
+                          </motion.span>
+                        )
+                      })}
                     </div>
                   </div>
 
@@ -214,9 +238,9 @@ export default function PizzaDetails({ pizzaId }: PizzaDetailsProps) {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleAddToOrder}
-                      className="w-full bg-primary-600 text-white py-2.5 rounded-lg font-bold uppercase text-sm hover:bg-primary-700 transition-colors flex items-center justify-center gap-2 shadow-md"
+                      className="w-full bg-yellow-400 hover:bg-yellow-500 text-neutral-900 py-3 rounded-lg font-bold uppercase text-sm transition-colors flex items-center justify-center gap-2 shadow-md"
                     >
-                      <Plus className="w-6 h-6" />
+                      <Plus className="w-5 h-5" />
                       Add to Cart
                     </motion.button>
                   </div>

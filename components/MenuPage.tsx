@@ -2,6 +2,8 @@
 
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { Plus } from 'lucide-react'
 import { useApp } from '@/context/AppContext'
 import PizzaCard from './PizzaCard'
 import PizzaFilters from './PizzaFilters'
@@ -70,7 +72,7 @@ export default function MenuPage() {
   return (
     <>
       {/* Header Section */}
-      <section className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-20">
+      <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -78,21 +80,34 @@ export default function MenuPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <p className="text-primary-100 text-xl md:text-2xl font-serif italic mb-4">
-              Explore Our Menu
-            </p>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 uppercase tracking-tight">
-              Our Pizza Collection
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <p className="text-primary-600 text-lg md:text-xl font-semibold uppercase tracking-wide">
+                Popular Dishes
+              </p>
+              <div className="w-20 h-1 bg-primary-600"></div>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900">
+              Browse Our Menu
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
+            <p className="text-lg text-neutral-600 leading-relaxed mb-8">
               From classic favorites to innovative creations, discover the perfect pizza for every taste
             </p>
+            <Link href="/add-pizza">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-neutral-900 px-6 py-3 rounded-lg font-bold uppercase text-sm transition-all shadow-md hover:shadow-lg"
+              >
+                <Plus className="w-5 h-5" />
+                Add New Pizza
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Menu Section */}
-      <section className="py-20 bg-neutral-50">
+      <section className="py-16 bg-neutral-50">
         <div className="container mx-auto px-4">
           {/* Charts */}
           <div className="mb-12">
