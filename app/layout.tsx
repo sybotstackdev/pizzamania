@@ -27,6 +27,11 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'PizzaVibe - Delicious Pizza Delivery',
   description: 'Order your favorite pizzas online with PizzaVibe',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 }
 
 export default function RootLayout({
