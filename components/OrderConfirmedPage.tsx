@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { CheckCircle, Clock, Package, ShoppingCart, ArrowLeft, Home, Sparkles, PartyPopper } from 'lucide-react'
 import Footer from './Footer'
 
-export default function OrderConfirmedPage() {
+function OrderConfirmedContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [orderInfo, setOrderInfo] = useState<{
@@ -425,6 +425,27 @@ export default function OrderConfirmedPage() {
       {/* Footer */}
       <Footer />
     </>
+  )
+}
+
+export default function OrderConfirmedPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-white">
+          <div className="text-center">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+              className="w-8 h-8 border-2 border-primary-600 border-t-transparent rounded-full mx-auto mb-4"
+            />
+            <p className="text-neutral-600">Loading order details...</p>
+          </div>
+        </div>
+      }
+    >
+      <OrderConfirmedContent />
+    </Suspense>
   )
 }
 
