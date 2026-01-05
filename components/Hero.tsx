@@ -14,7 +14,7 @@ export default function Hero() {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-400 rounded-full opacity-5 blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-16 lg:py-24 relative z-10">
+      <div className="container mx-auto px-4 py-16 lg:py-14 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <motion.div
