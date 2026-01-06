@@ -29,6 +29,24 @@ export default function Navigation() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="bg-white sticky top-0 z-50 border-b border-neutral-200 shadow-sm"
       >
+        {/* Yellow Background Banner - Buy One Get One Offer */}
+        <div className="bg-yellow-400 w-full py-2">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-center gap-2">
+              <motion.span 
+                className="text-lg sm:text-xl"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+              >
+                🍕
+              </motion.span>
+              <span className="font-bold text-xs sm:text-sm uppercase tracking-wide text-neutral-900">
+                Buy One Get One <span className="text-primary-600 font-extrabold">FREE</span> - Limited Time Offer!
+              </span>
+            </div>
+          </div>
+        </div>
+        
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -37,7 +55,7 @@ export default function Navigation() {
             </Link>
 
             {/* Desktop Navigation - Centered */}
-            <div className="hidden lg:flex items-center gap-12">
+            <div className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => {
                 const isActive = pathname === item.href || (item.href === '/menu' && pathname.startsWith('/menu'))
                 return (

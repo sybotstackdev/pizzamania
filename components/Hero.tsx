@@ -1,11 +1,38 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCart, Sparkles } from 'lucide-react'
+import { useRef } from 'react'
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [7, -7]), {
+    stiffness: 300,
+    damping: 30
+  })
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-7, 7]), {
+    stiffness: 300,
+    damping: 30
+  })
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    x.set((e.clientX - centerX) / rect.width)
+    y.set((e.clientY - centerY) / rect.height)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-neutral-50 via-white to-neutral-50">
       {/* Decorative Background Elements */}
@@ -96,39 +123,88 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ perspective: '1000px' }}
           >
-            {/* Main Pizza Image Container */}
-            <div className="relative">
-              <div className="relative w-full h-80 sm:h-96 lg:h-[500px]">
-                <Image
-                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=800&fit=crop"
-                  alt="Delicious Pizza"
-                  fill
-                  priority
-                  className="object-contain drop-shadow-2xl"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-
-              {/* Floating Promotional Badge */}
+            {/* Main Pizza Image Container with 3D Effect */}
+            <div className="relative" style={{ transformStyle: 'preserve-3d' }}>
+              {/* 3D Floating Animation Container */}
               <motion.div
-                initial={{ opacity: 0, y: 20, rotate: -12 }}
-                animate={{ opacity: 1, y: 0, rotate: -12 }}
-                transition={{ delay: 0.6, type: 'spring' }}
-                className="absolute -top-4 -right-4 lg:-right-8 bg-yellow-400 px-6 py-4 rounded-2xl shadow-2xl z-20 transform rotate-[-12deg]"
+                style={{
+                  rotateX,
+                  rotateY,
+                  transformStyle: 'preserve-3d',
+                }}
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  y: {
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                    duration: 4,
+                    ease: 'easeInOut'
+                  }
+                }}
+                className="relative w-full h-80 sm:h-96 lg:h-[500px]"
               >
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-2xl">🍕</span>
-                  <div className="text-neutral-900 font-bold text-xs uppercase text-center leading-tight">
-                    <div>BUY ONE</div>
-                    <div>GET ONE</div>
-                    <div className="text-primary-600">FREE</div>
-                  </div>
-                </div>
+                {/* Enhanced Shadow Layer */}
+                <div 
+                  className="absolute inset-0 rounded-full blur-3xl"
+                  style={{ 
+                    transform: 'translateZ(-50px) scale(1.2)',
+                    filter: 'blur(40px)',
+                    background: 'radial-gradient(circle, rgba(0,0,0,0.2) 0%, transparent 70%)'
+                  }}
+                />
+                
+                {/* Main Image - Children Eating Pizza with 3D Depth */}
+                <motion.div
+                  className="relative w-full h-full"
+                  style={{
+                    transform: 'translateZ(30px)',
+                    filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.3))',
+                  }}
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&h=800&fit=crop"
+                    alt="Children enjoying pizza"
+                    fill
+                    priority
+                    className="object-cover rounded-2xl"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </motion.div>
+
+                {/* Additional Depth Layers */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-transparent rounded-full"
+                  style={{ transform: 'translateZ(20px)' }}
+                />
               </motion.div>
 
-              {/* Decorative Circle */}
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-primary-600 rounded-full opacity-10 blur-2xl"></div>
+              {/* Enhanced Decorative Circles with 3D effect */}
+              <motion.div 
+                className="absolute -bottom-8 -left-8 w-32 h-32 bg-primary-600 rounded-full opacity-10 blur-2xl"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.15, 0.1],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 5,
+                  ease: 'easeInOut'
+                }}
+                style={{ transform: 'translateZ(-30px)' }}
+              />
+              
+              {/* Additional 3D glow effect */}
+              <div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-400/5 rounded-full blur-3xl"
+                style={{ transform: 'translateZ(-100px) translate(-50%, -50%)' }}
+              />
             </div>
           </motion.div>
         </div>
